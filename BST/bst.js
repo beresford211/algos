@@ -9,6 +9,25 @@
      4. Recursively call the pre-order function on the subtree to the right of the current node.
 */
 
+/*
+  In-order:
+    Steps:
+      1. Start at the root node
+      2. Recursively call the pre-order function on the subtree to the left of the current node
+      3. Check the value of the current node; if it has a value; record it.
+      4. Recursively call the pre-order function on the subtree to the right of the current node.
+*/
+
+/*
+  BFS
+    - Start at the root
+    - Place the root node in a queue
+      - If anything in queue - dequeue it
+        - if it has a left node enqueue it
+        - if it has a right node enqueue it 
+*/
+
+
 class Node {
   constructor(data, left, right) {
     this.data = data;
@@ -29,30 +48,30 @@ class BST {
     this.inOrder = inOrder;
   }
 
-  insert(data) {
-    let n = new Node(data, null, null);
-    if (this.root == null) {
-      this.root = n;
-    } else {
-      let current = this.root;
-      let parent;
+  // insert(data) {
+  //   let n = new Node(data, null, null);
+  //   if (this.root == null) {
+  //     this.root = n;
+  //   } else {
+  //     let current = this.root;
+  //     let parent;
 
-      while (true) {
-        parent = current;
+  //     while (true) {
+  //       parent = current;
 
-        if (data < current.data) {
-          current = current.left;
+  //       if (data < current.data) {
+  //         current = current.left;
 
-        }
-      }
-    }
-  }
-  preOrder(value) {
-    if (this.root.data === value) {
-      return this.root;
-    }
+  //       }
+  //     }
+  //   }
+  // }
+  preOrderDFS(value) {
     let currentNode = this.root;
-    let crawlTree = (node) => {
+    if (currentNode.data === value) {
+      return currentNode;
+    }
+    let crawlTreePreO = (node) => {
       if (node.data === value) {
         return node;
       }
@@ -74,13 +93,98 @@ class BST {
 
   }
 
-  postOrder() {
+  inOrderDFS(value) {
+    if (!this.root) {
+      return;
+    }
+    let values = [];
 
+    let crawlTreeIO = (node) => {
+      if (!node.left && !node.right) {
+        values.push(node.data);
+        return;
+      }
+
+      if (node.left) {
+        crawlTreeIO(node.left);
+        values.push(node.left.data);
+      }
+
+      if (node.right) {
+        crawlTreeIO(node.right);
+      }
+    }
+    crawlTreeIO(this.root.left);
   }
 
-  inOrder() {
+  postOrderDFS(value) {
+    if (!this.root) { return }
+    let values = [];
+
+    let crawlTreePreO = (node) => {
+      if (node.data === value) {
+        return node;
+      }
+
+      if (node.left) {
+        crawlTree(node.left);
+      }
+
+      if (node.right) {
+        crawlTree(node.right);
+      }
+      values.push(node.data);
+    }
+  }
+
+  bfSearch() {
+    if (!this.root) { return }
+    let queue = [];
+    let values = [];
+    queue.push(this.root);
+
+    while (queue.length > 0) {
+      let currentNode = queue.shift();
+      if (currentNode.left) {
+        queue.push(currentNode.left);
+      }
+      if (currentNode.right) {
+        queue.push(currentNode.right);
+      }
+      values.push(currentNode.data);
+    }
+
+    return values;
+  }
+
+  insertItaritively(node) {
+    if (!this.root) {
+      this.root = node;
+    }
+    let currentNode = this.root;
+
+    while (true) {
+      if (currentNode.data > node.data) {
+        if (currentNode.left) {
+          currentNode = currentNode.left
+        } else {
+          currentNode.left = node;
+        }
+      } else if (currentNode.data < node.data) {
+        if (currentNode.right) {
+          currentNode = currentNode.right;
+        } else {
+          currentNode.right = node;
+        }
+      }
+    }
+  }
+
+  insertRecursively(node) {
 
   }
 
 
 }
+
+
