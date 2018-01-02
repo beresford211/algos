@@ -6,8 +6,6 @@ Result: [1, 2, 2, 0, 3]
 
 function shortestSubArray(numSet, arr) {
   let setCopy = Object.assign({}, numSet);
-  // let setLength = Object.keys(setCopy).length;
-  // let setLengthCopy = setLength;
   let currentBest = Infinity;
 
   for (let i = 0; i < arr.length; i++) {
