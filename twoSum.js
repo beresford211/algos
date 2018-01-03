@@ -34,19 +34,18 @@ let twoSum = (arr, target) => {
 
 let twoSumMeth2 = (arr, val) => {
   let storage = {};
-  let finalResult = [];
 
   for (let i = 0; i < arr.length; i++) {
-    storage[val - arr[i]] = arr[i]
-  }
-
-  for (let k = 0; k < arr.length; k++) {
-    if (storage[arr[k]]) {
-      finalResult = [storage[arr[k]], arr[k]];
-      break;
+    let remains;
+    if (!storage[arr[i]]) {
+      storage[arr[i]] = arr[i];
+    }
+    remains = val - arr[i];
+    if (storage[remains]) {
+      return [arr[i], remains];
     }
   }
-  return finalResult;
+  return [];
 }
 
 let testTwoSum = twoSum([9, 2, 4, 69295, 252, 3, 1, 41, 45, 2, 49], 45);
