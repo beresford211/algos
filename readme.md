@@ -7,6 +7,7 @@
 ## Dynamic Programmin
   - **Memoization**: The technique of caching and reusing previously computed results.
   - **Tabulation**: Focuses on filling the entries of the cache.
+  **Performance**: Tabulation usually outperforms memoization by a constant factor. 
 
 ## Graph 
   ### Graph Vocabulary
