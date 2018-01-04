@@ -1,6 +1,6 @@
 # Algorithms
 
-##Graph Vocabulary
+## Graph Vocabulary
   - **Vertex**: Each vertex represents a piece of data in the graph
   - **Edge**: Nodes and Vertices are connected by edges
   - **Weighted**: Weighted graphs have values placed on each edge, this is the cost to travel from one node to another
