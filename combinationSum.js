@@ -3,29 +3,30 @@
  * @param {number} target
  * @return {number[][]}
  */
-var combinationSum = function (candidates, target) {
-  let dict = {};
-  let arr = [];
+let combinationSum = function (candidates, target) {
+  let hashMap = {};
+  let results = [];
+  let combinationPermuation = (candidates, searchVal, valsUsed) => {
 
-  let helperFunc = function (arr, target, results) {
-    for (let i = 0; i < arr.length; i++) {
-      if (target - arr[i] === 0) {
-        results = results + "," + arr[i];
-        if (!dict[results]) {
-          dict[results] = true;
-          let k = results.split(",").map((x) => {
-            if (x !== "") {
-              return parseInt(x);
-            }
-          });
-          arr.push(k);
-        }
-      } else if (target - arr[i] > 0) {
-        let s = target
-        helperFunc(arr.slice(i), s -= arr[i], results + "," + arr[i]);
+    if (searchVal === 0) {
+      let createKey = valsUsed.join("");
+      if (!hashMap[createKey]) {
+        hashMap[createKey] = true;
+        results.push(valsUsed);
+      }
+      return;
+    }
+    let updateVal;
+
+    for (let i = 0; i < candidates.length; i++) {
+      if (searchVal - candidates[i] >= 0) {
+        updateVal = searchVal - candidates[i];
+        valsUsed.push(candidates[i]);
+        combinationPermuation(candidates.slice(i), updateVal, valsUsed.slice(0));
+        valsUsed.pop();
       }
     }
   }
-  helperFunc(candidates, target, "");
-  return JSON.stringify(dict);
+  combinationPermuation(candidates, target, []);
+  return results;
 };

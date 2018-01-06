@@ -25,6 +25,7 @@ let kthToLastNode = (k, head) => {
   }
   return arr.shift().value;
 }
+console.log(kthToLastNode(2, a));
 
 // let kthToLastNodeV2 = (k, head) => {
 //   let arr = new Array(k).fill();
@@ -40,6 +41,5 @@ let kthToLastNode = (k, head) => {
 //   return arr.shift().value;
 // }
 
-console.log(kthToLastNode(2, a));
 // console.log(kthToLastNodeV2(2, a));
 
