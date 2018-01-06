@@ -2,69 +2,73 @@
 
 */
 class Graph {
-  constructor() {
-    this.vertices = [];
-    this.adjacenyList = {};
-  }
-
-  addVertex() {
-
-  }
-
-  removeEdge() {
-
-  }
-
-}
-
-class Graph2 {
   constructor(v) {
     this.vertices = v;
     this.edges = 0;
     this.adj = [];
-
-    for (let i = 0; i < this.vertices; i++) {
+    this.marked = [];
+    for (let i = 0; i < this.vertices; ++i) {
+      this.marked[i] = false;
       this.adj[i] = [];
       this.adj[i].push("");
     }
-
-    this.addEdge = addEdge;
-    this.toString = toString;
   }
 
-  addEdge(n1, n2) {
-    this.adj[n1].push(n2);
-    this.adj[n2].push(n1);
+  addEdge(v, w) {
+    this.adj[v].push(w);
+    this.adj[w].push(v);
     this.edges++;
   }
 
-  removeEdge(n1, n2) {
-
-  }
-
-  addVertex(val) {
-    this.adj[this.adj.length] = [];
-  }
-
-
   showGraph() {
-    let str = "";
+    let str;
     for (let i = 0; i < this.vertices; i++) {
-      str += i + " -> ";
-      for (let k = 0; k < this.vertices; k++) {
+      str = `${i} -> `;
+      for (let j = 0; j < this.vertices; ++j) {
         if (this.adj[i][j] != undefined) {
-          str += this.adj[i][j] + ' ';
+          str += `${this.adj[i][j]} `;
         }
       }
-      console.log(str);
-      str = "";
+      console.log("Node: ", str);
     }
   }
+  dfs(node) {
+    this.marked[node] = true;
+    if (this.adj[node]) {
+      console.log("Visited vertex: ", node);
+    }
+
+    for (let k = 0; k < this.vertices; k++) {
+
+    }
+  }
+
 }
 
-class Vertices {
-  constructor(data) {
-    this.data = data;
-    this.visited = false;
-  }
-}
+let g1 = new Graph(5);
+
+g1.addEdge(0, 1);
+g1.addEdge(0, 2);
+g1.addEdge(1, 3);
+g1.addEdge(2, 4);
+g1.showGraph();
+
+
+
+
+
+
+// let exBFGSraph = [
+//   [0, 1, 1, 1, 0],
+//   [0, 0, 1, 0, 0],
+//   [1, 1, 0, 0, 0],
+//   [0, 0, 0, 1, 0],
+//   [0, 1, 0, 0, 0]
+// ];
+
+// class Vertices {
+//   constructor(data) {
+//     this.data = data;
+//     this.visited = false;
+//   }
+// }
