@@ -38,8 +38,10 @@ class Graph {
       console.log("Visited vertex: ", node);
     }
 
-    for (let k = 0; k < this.vertices; k++) {
-
+    for (let k = 0; k < this.adj[node]; k++) {
+      if (!this.marked[k]) {
+        this.dfs(k);
+      }
     }
   }
 
