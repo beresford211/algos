@@ -39,8 +39,25 @@ class Graph {
     }
 
     for (let k = 0; k < this.adj[node]; k++) {
-      if (!this.marked[k]) {
+      if (!this.marked[this.adj[node][k]]) {
         this.dfs(k);
+      }
+    }
+  }
+
+  bfs(node) {
+    let queue = [];
+    queue.push(this.adj[node]);
+    this.marked[node] = true;
+    let currNode;
+    while (queue.length > 0) {
+      currNode = queue.shift();
+      if (this.adj[currNode]) {
+        this.marked[currNode] = true;
+        console.log("Visited vertex: ", currNode);
+        for (let k = 0; k < this.adj.length; k++) {
+          queue.push(this.adj[currNode][k]);
+        }
       }
     }
   }
