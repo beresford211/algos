@@ -27,6 +27,10 @@ class LinkedList {
   // Memory is Constant
   // Runtime is N
   swapNthWithHead(n) {
+    if (n === 1) {
+      return this.root;
+    }
+
     let rootNode = this.root;
     let rootNext = this.root.next;
 
