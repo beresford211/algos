@@ -21,10 +21,10 @@ function smallestCommonNumber(arr1, arr2, arr3) {
   let p1Val;
   let p2Val;
   let p3Val;
-  let smallestNum = null;
+  let smallestNum = -1;
 
 
-  while (p3 < arr3.length || p2 < arr2.length || p1 < arr1.length) {
+  while (p3 < arr3.length && p2 < arr2.length && p1 < arr1.length) {
     p1Val = arr1[p1];
     p2Val = arr2[p2];
     p3Val = arr3[p3];
