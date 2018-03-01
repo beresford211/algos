@@ -7,7 +7,7 @@ function levelOrderTraversal(root) {
     return null;
   }
 
-  let stack = [root];
+  let stack = [[root]];
   let level = 1;
 
   while (stack.length > 0) {
@@ -25,7 +25,9 @@ function levelOrderTraversal(root) {
         nextSubStack.push(currentNode.right);
       }
     }
-    stack.push(nextSubStack);
+    if (nextSubStack.length > 0) {
+      stack.push(nextSubStack);
+    }
     level++;
     console.log(printLevelValues + '\n');
   }
