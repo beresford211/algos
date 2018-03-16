@@ -1,0 +1,26 @@
+<html>
+
+<head></head>
+
+<body>
+  <div>Input Debounce</div>
+  <input type="text" id="user_input" />
+  <div id="current_input"></div>
+  <script>
+    const debounce = () => {
+
+      return function (e) {
+        clearTimeout(window.timeOutId)
+        let event = e;
+        window.timeOutId = setTimeout(() => {
+          console.log(event);
+        }, 4000);
+      }
+    }
+    document.addEventListener("keypress", debounce());
+
+  </script>
+
+</body>
+
+</html>
