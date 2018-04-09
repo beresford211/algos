@@ -98,10 +98,6 @@ Step 6.
 By the end of this I realized my explanation kind of sucks.
 */
 
-
-
-
-
 function coinChangeDP(coins, sum) {
   let coinCombos = [];
 
